@@ -20,7 +20,7 @@ def search(request):
     search_msg = request.POST.get('query', '')
     if search_msg:
         images = services.getAllImages(search_msg)
-        favourite_list = []      # Aquí podrías incluir la lógica de favoritos si ya está implementada
+        favourite_list = [] 
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     else:
         return redirect('home')
