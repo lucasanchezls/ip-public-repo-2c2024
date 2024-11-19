@@ -18,7 +18,12 @@ def home(request):
 
 def search(request):
     search_msg = request.POST.get('query', '')
-
+    if search_msg:
+        images = services.getAllImages(search_msg)
+        favourite_list = []      # Aquí podrías incluir la lógica de favoritos si ya está implementada
+        return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
+    else:
+        return redirect('home')
     # si el texto ingresado no es vacío, trae las imágenes y favoritos desde services.py,
     # y luego renderiza el template (similar a home).
     if (search_msg != ''):
